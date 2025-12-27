@@ -1,2 +1,2 @@
 # Reversing-Write-ups
-this repository contains all the projects that i have reversed through out my malware analyst journey and shows my progress.
+THIS REPO CONTAINS LINUX BINARY ELF FILES FROM CRACKMES.ONE . I HAVE APPLIED PATCHING AND REVERSING LOGICS. WRITEUPS AND FILES ARE INCLUDED IN ZIP FILE YOU CAN DOWNLOAD AND TRY FOR YOURSELF.
