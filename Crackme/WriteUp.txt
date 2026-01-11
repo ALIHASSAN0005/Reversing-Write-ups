@@ -1,0 +1,13 @@
+First things first: I found out that the key is being generated with srand and rand, so a new key is created every time. The only way to bypass it is to patch jump instructions, which I did.
+
+The second problem was that the program exits after 8 seconds. I realized it calls time(). At first, I thought I could freeze the system time and then use Python to generate the key using the same logic as the program and feed it back. But I feared there were more checks, and the key was not just being checked simply, so that approach wouldn’t work reliably.
+
+I then discovered that the program calls the signal function with two arguments: 14 (meaning SIGALRM) and a handler function that exits the program. I patched the handler to immediately return whenever it is called, so the program never exits, even after the time limit has passed.
+
+How the actual time limit is created is another beast. After the signal logic, the program calls the alarm function, and its value depends on the random key. At this level, simply returning from the handler function was easier than trying to follow the entire alarm logic. I’m sure more tweaks could have been done, but this was sufficient.
+
+This crackme taught me to ignore unnecessary paths. There are rabbit holes you could chase forever to try to find the generated password. What I learned is:
+
+If a password is generated randomly, it’s often better to patch the compare instructions to bypass it rather than trying to calculate or reproduce it.
+
+You can return from a function immediately to neutralize it — this is a trick I will definitely use in future challenges.
