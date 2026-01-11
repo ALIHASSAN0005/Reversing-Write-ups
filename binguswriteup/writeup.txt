@@ -1,0 +1,9 @@
+Bingus Binary Reverse Engineering
+
+This project showcases my reverse engineering of a small Linux binary called Bingus. The goal was to analyze the binary, understand its logic, and simplify it into readable C code while preserving its functionality.
+
+I started by observing the binary’s behavior with different inputs, which revealed strict validation and arithmetic checks on the user input. Using Ghidra, I analyzed the main function and discovered that the program accessed the first user input string, checked its length, and compared its characters. It also calculated a sum by adding ASCII values of a hardcoded string "This is a red herring" to an initial value, and then verified that the sum plus the input characters equaled a target value.
+
+Through careful analysis, I determined that the valid input must be exactly two identical characters whose ASCII values satisfy the sum check. I then rewrote the binary’s logic into clean C code, removing confusing pointer arithmetic and making the program readable while keeping all original functionality intact.
+
+This project highlights my ability to reverse engineer binaries, interpret pointer and memory logic, perform manual arithmetic analysis, and translate complex assembly/decompiled code into clear, functional C code.
