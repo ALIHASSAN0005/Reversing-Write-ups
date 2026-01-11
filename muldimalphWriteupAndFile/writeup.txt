@@ -1,0 +1,7 @@
+The program validates the serial by dynamically generating the expected key at runtime. The first three input characters are validated to be within the ASCII range '0' to 'z' and must form a 16‑byte input. These first three characters are then used as seed values for floating‑point calculations inside a loop that generates the remaining 13 bytes of the expected serial.
+
+During each iteration, the loop computes an index using arithmetic derived from the first three characters and the loop counter. This index is used to retrieve a byte from a static lookup table located in the program’s data section. The resulting bytes are stored in a local buffer on the stack.
+
+Once all 16 bytes are generated, the program compares the generated buffer with the user‑supplied input using memcmp. If the buffers match exactly, the serial is considered valid.
+
+Rather than reversing the mathematical logic and lookup table statically, the expected serial was extracted dynamically at runtime using pwndbg by inspecting the generated stack buffer after the loop execution.
